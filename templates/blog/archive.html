@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+
+{% block mainbody %}
+<h1>Archive</h1><hr>
+<div class="container">
+	{% for post_title in post_titles %}
+		<div class="title col-md-8">
+			{{ post_title.title }}
+		</div>
+		<div class="col-md-4">{{ post_title.pub_date }}</div>
+	{% endfor %}
+</div>
+{% endblock %}

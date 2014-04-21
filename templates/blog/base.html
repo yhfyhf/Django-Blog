@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>Ying Haofei's Oasis</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/base.css" %}">
+	{% block cssfiles%}{% endblock %}
+	{% block jsfiles%}{% endblock %}
+	<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+	  <div class="container">
+	    <div class="navbar-header">
+	      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a href="../" class="navbar-brand">Ying Haofei's Oasis</a>
+	    </div>
+	    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+	      <ul class="nav navbar-nav">
+	        <li>
+	          <a href="/">Home</a>
+	        </li>
+	        <li class="active">
+	          <a href="/archive">Archive</a>
+	        </li>
+	        <li>
+	          <a href="#">Sitemap</a>
+	        </li>
+	       	<li>
+	          <a href="#">About</a>
+	        </li>
+	      </ul>
+	    </nav>
+	  </div>
+	</header>
+
+	<div class="mainbody">
+		{% block mainbody%}{% endblock %}
+	</div>
+	
+	<footer>
+		<p>Copyright Ying Haofei's Oasis 2014. All rights reserved.</p>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,22 @@
+div.title {
+	color: #0088cc;
+}
+
+div.title label {
+	color: gray;
+	font-size: 15px;
+	margin-left: 20px;
+	font-weight: lighter;
+}
+
+div.content {
+	width: 90%;
+	font-family: Consolas,Monaco,'Andale Mono',monospace;
+}
+
+div.tags {
+	margin-top: 10px;
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
