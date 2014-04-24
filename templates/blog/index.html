@@ -10,23 +10,67 @@
 
 <!-- class="mainbody" -->
 {% block mainbody%}
-{% for post in posts%}
-	<div class="title">
-		<h2>{{ post.title }}<label>{{ post.pub_date|date:"Y年m月d日" }}</label></h2> 
-	</div>
-	<div class="content">
-		{{ post.content }}
-	</div>
-	<div class="tags">
-		<strong>Tags: </strong>
-		{% for tag in tags %}
-			{% if tag.post.id == post.id %}
-				{{ tag }}
-			{% endif %}
-		{% endfor %}
-	</div>
-	<hr>
-{% endfor %}
+<div class="sidebar">
+	<h3>Latest Post</h3>
+	{% for post in posts %}
+		{% if forloop.counter <= 5 %}
+			<a href="/blog/{{ post.id }}">{{ post.title }}</a><br>
+		{% endif %}
+	{% endfor%}
+	<br><br><br>
+	<h3>Tag Cloud</h3>
+	{% for tag in tags %}
+		{{ tag.name }}
+	{% endfor %}
+	
+
+</div>
+
+
+<div class="posts">
+	{% for post in posts %}
+		<div class="title">
+			<h2><a href="/blog/{{ post.id }}">{{ post.title }}</a><label>{{ post.pub_date|date:"Y年m月d日" }}</label></h2> 
+		</div>
+		<div class="content">
+			{% autoescape off %}
+				{{ post.content }}
+			{% endautoescape %}
+		</div>
+		<div class="tags">
+			<strong>Tags: </strong>
+			{% for tag in tags %}
+				{% if tag.post.id == post.id %}
+					{{ tag }}
+				{% endif %}
+			{% endfor %}
+		</div>
+		<hr>
+	{% endfor %}
+</div>
+
+
+
+
+<script type="text/javascript" src="{% static "js/tinymce/tinymce.min.js" %}"></script>
+<script>
+tinymce.init({
+    selector: "textarea",
+    theme: "modern",
+    width: "1000",
+    height: 300,
+    plugins: [
+         "advlist autolink link lists charmap print preview hr anchor pagebreak spellchecker",
+         "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+         "save table contextmenu directionality emoticons template paste textcolor"
+   ],
+   content_css: "css/content.css",
+   toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons"
+ }); 
+</script>
+
+
+
 
 <form action="/blog/" method="post" accept-charset="utf-8">
 	{% csrf_token %}

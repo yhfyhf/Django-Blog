@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block cssfiles %}
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static "css/index.css" %}">
+{% endblock %}
+
+{% block mainbody %}
+<h1>{{ a_post.title }}</h1><hr>
+<div class="posts">
+	{% autoescape off %}
+		{{ a_post.content }}
+	{% endautoescape %}
+</div>
+{% endblock %}

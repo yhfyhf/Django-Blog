@@ -5,9 +5,11 @@
 <div class="container">
 	{% for post_title in post_titles %}
 		<div class="title col-md-8">
-			{{ post_title.title }}
+			<a href="/blog/{{ post_title.id }}">{{ post_title.title }}</a>
 		</div>
-		<div class="col-md-4">{{ post_title.pub_date }}</div>
+		<div class="col-md-4">
+			{{ post_title.pub_date|date:"Y年m月d日" }}
+		</div>
 	{% endfor %}
 </div>
 {% endblock %}
