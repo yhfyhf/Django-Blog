@@ -1,3 +1,13 @@
+form.search {
+	float: right;
+	margin-top: 1%;
+}
+
+div.posts {
+	width: 75%;
+	margin-left: 5%;
+}
+
 div.title {
 	color: #0088cc;
 }
@@ -19,4 +29,22 @@ div.tags {
 	font-family: sans-serif;
 	font-size: 14px;
 }
+
+div.sidebar {
+	float: right;
+	width: 20%;
+	margin-right: 5%;
+	padding: 5px;
+	box-shadow: 1px;
+}
+
+div.sidebar h3 {
+	color: #428bca;
+}
+
+div.sidebar a {
+	color: black;
+}
+
+
 
