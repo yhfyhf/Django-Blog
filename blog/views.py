@@ -34,7 +34,7 @@ def Index(request):
 				new_tag.save()
 	""" request.GET """
 	ctx = {}
-	posts = Post.objects.all()
+	posts = Post.objects.all().order_by('-pub_date')
 	tags = Tag.objects.all()
 	post_form = PostForm()
 	ctx.update(csrf(request))
@@ -46,6 +46,13 @@ def Index(request):
 
 def Archive(request):
 	ctx = {}
-	post_titles = Post.objects.all()
+	post_titles = Post.objects.all().order_by('-pub_date')
 	ctx['post_titles'] = post_titles
 	return render(request, 'blog/archive.html', ctx) 
+
+def Show_post(request, post_id):
+	ctx = {}
+	a_post = Post.objects.get(id=post_id)
+	ctx.update(csrf(request))
+	ctx['a_post'] = a_post
+	return render(request, 'blog/blog.html', ctx)
