@@ -1,0 +1,15 @@
+{% extends "blog/base.html" %}
+
+{% block mainbody %}
+<h1>Search Result</h1><hr>
+<div class="container">
+	{% for post in post_list %}
+		<div class="title col-md-8">
+			<a href="/blog/{{ post.id }}">{{ post.title }}</a>
+		</div>
+		<div class="col-md-4">
+			{{ post.pub_date|date:"Y年m月d日" }}
+		</div>
+	{% endfor %}
+</div>
+{% endblock %}
