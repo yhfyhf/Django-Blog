@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.shortcuts import render, redirect, render_to_response
 from django.core.context_processors import csrf
 from django import forms
+from django.db.models import Q
 
 from blog.models import Post, Tag
 
@@ -17,6 +18,8 @@ class PostForm(forms.Form):
 
 def Index(request):
 	if request.POST:
+		if not request.user.is_authenticated():
+			return redirect('/login/')
 		form = PostForm(request.POST)
 		if form.is_valid():
 			submitted_title = request.POST['title']
@@ -50,9 +53,25 @@ def Archive(request):
 	ctx['post_titles'] = post_titles
 	return render(request, 'blog/archive.html', ctx) 
 
+
 def Show_post(request, post_id):
 	ctx = {}
 	a_post = Post.objects.get(id=post_id)
 	ctx.update(csrf(request))
 	ctx['a_post'] = a_post
 	return render(request, 'blog/blog.html', ctx)
+
+def Search(request):
+	# name = request.POST.get('search',None)
+	# if name:
+	# 	extra_context = {'searchvalue':name}
+	# 	return object_list(request, Post.objects.filter('content__contains':name), paginate_by=10, extra_context=extra_context)
+ #  	else:
+ #    	return redirect('/')
+ 	if 'q' in request.GET:
+ 		term = request.GET['q']
+ 		post_list = Post.objects.filter(Q(title__icontains=term) | Q(content__icontains=term))
+ 		ctx = {}
+ 		ctx['post_list'] = post_list
+ 		# return render(request, 'blog/search.html', ctx)
+ 		return render_to_response('blog/search.html', locals())

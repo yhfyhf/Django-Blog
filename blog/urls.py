@@ -7,5 +7,6 @@ urlpatterns = patterns('',
 	url(r'^archive/$', 'blog.views.Archive'),
 	url(r'^blog/(?P<post_id>\d*)', 'blog.views.Show_post'),	
 	url(r'^feed|rss/$', LatestEntriesFeed()),
+	url(r'^search/$','blog.views.Search'),
 )				
 
